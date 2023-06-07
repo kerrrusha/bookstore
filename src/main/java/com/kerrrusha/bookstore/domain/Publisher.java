@@ -3,6 +3,7 @@ package com.kerrrusha.bookstore.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -19,7 +20,8 @@ public class Publisher {
     private String address;
 
     @OneToMany
-    private Set<Book> books;
+    @JoinColumn(name = "publisher_id")
+    private Set<Book> books = new HashSet<>();
 
     public Publisher(String name, String address) {
         this.name = name;
