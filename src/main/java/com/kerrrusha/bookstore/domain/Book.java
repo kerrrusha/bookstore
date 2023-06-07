@@ -3,6 +3,7 @@ package com.kerrrusha.bookstore.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -26,6 +27,16 @@ public class Book {
             inverseJoinColumns = @JoinColumn(name = "author_id")
     )
     private Set<Author> authors;
+
+    public Book(String title, String isbn) {
+        this.title = title;
+        this.isbn = isbn;
+        authors = new HashSet<>();
+    }
+
+    public void addAuthor(Author author) {
+        authors.add(author);
+    }
 
     @Override
     public boolean equals(Object o) {

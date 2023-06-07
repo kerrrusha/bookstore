@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -24,6 +25,16 @@ public class Author {
 
     @ManyToMany(mappedBy = "authors")
     private Set<Book> books;
+
+    public Author(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        books = new HashSet<>();
+    }
+
+    public void addBook(Book book) {
+        books.add(book);
+    }
 
     @Override
     public boolean equals(Object o) {
