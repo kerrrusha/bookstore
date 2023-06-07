@@ -2,8 +2,10 @@ package com.kerrrusha.bookstore.bootstrap;
 
 import com.kerrrusha.bookstore.domain.Author;
 import com.kerrrusha.bookstore.domain.Book;
+import com.kerrrusha.bookstore.domain.Publisher;
 import com.kerrrusha.bookstore.repository.AuthorRepository;
 import com.kerrrusha.bookstore.repository.BookRepository;
+import com.kerrrusha.bookstore.repository.PublisherRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
@@ -16,6 +18,7 @@ public class BootstrapData implements CommandLineRunner {
 
     private final AuthorRepository authorRepository;
     private final BookRepository bookRepository;
+    private final PublisherRepository publisherRepository;
 
     @Override
     public void run(String... args) {
@@ -25,12 +28,18 @@ public class BootstrapData implements CommandLineRunner {
         robert.addBook(cleanCode);
         cleanCode.addAuthor(robert);
 
+        Publisher megacorp = new Publisher("Megacorp", "13 Jakarta Ave, Albuquerque, NM");
+        cleanCode.setPublisher(megacorp);
+        megacorp.addBook(cleanCode);
+
         authorRepository.save(robert);
         bookRepository.save(cleanCode);
+        publisherRepository.save(megacorp);
 
         log.info("Started in Bootstrap");
         log.info("Authors count: {}", authorRepository.count());
         log.info("Books count: {}", bookRepository.count());
+        log.info("Publishers count: {}", publisherRepository.count());
     }
 
 }

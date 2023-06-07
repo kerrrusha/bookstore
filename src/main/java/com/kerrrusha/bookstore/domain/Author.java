@@ -13,7 +13,6 @@ import java.util.Set;
 @Setter
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 public class Author {
 
     @Id
@@ -24,12 +23,11 @@ public class Author {
     private String lastName;
 
     @ManyToMany(mappedBy = "authors")
-    private Set<Book> books;
+    private Set<Book> books = new HashSet<>();
 
     public Author(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
-        books = new HashSet<>();
     }
 
     public void addBook(Book book) {
@@ -49,6 +47,16 @@ public class Author {
     @Override
     public int hashCode() {
         return getId() != null ? getId().hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Author{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", books=" + books +
+                '}';
     }
 
 }
