@@ -28,11 +28,15 @@ public class BootstrapData implements CommandLineRunner {
         robert.addBook(cleanCode);
         cleanCode.addAuthor(robert);
 
+        authorRepository.save(robert);
+        bookRepository.save(cleanCode);
+
         Publisher megacorp = new Publisher("Megacorp", "13 Jakarta Ave, Albuquerque, NM");
+        publisherRepository.save(megacorp);
+
         cleanCode.setPublisher(megacorp);
         megacorp.addBook(cleanCode);
 
-        authorRepository.save(robert);
         bookRepository.save(cleanCode);
         publisherRepository.save(megacorp);
 
