@@ -20,7 +20,6 @@ public class Book {
     private String isbn;    //International Standard Book Number
 
     @ManyToOne
-    @JoinColumn(name = "publisher_id")
     private Publisher publisher;
 
     @ManyToMany
@@ -61,7 +60,6 @@ public class Book {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", isbn='" + isbn + '\'' +
-                ", authors=" + authors +
                 '}';
     }
 
